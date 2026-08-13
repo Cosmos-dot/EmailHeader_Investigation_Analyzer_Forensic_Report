@@ -1,0 +1,16 @@
+Return-Path: <test@example.com>
+From: Test User <test@example.com>
+To: investigator@example.com
+Subject: Email Forensics Test
+Date: Thu, 13 Aug 2026 22:00:00 +0530
+Message-ID: <test-123@example.com>
+Received: from mail.example.com (mail.example.com [8.8.8.8])
+    by mx.example.net with ESMTP;
+    Thu, 13 Aug 2026 22:00:00 +0530
+DKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=test; bh=test; b=test
+Authentication-Results: mx.example.net;
+    spf=pass;
+    dkim=pass;
+    dmarc=pass
+
+This is a test email for the Phase 5 Email Forensics project.

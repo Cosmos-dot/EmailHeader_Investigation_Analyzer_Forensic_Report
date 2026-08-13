@@ -1,0 +1,23 @@
+{
+  "name": "email-forensics-verification-server",
+  "version": "1.0.0",
+  "description": "Genuine SPF, DKIM cryptographic and DMARC verification server",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@forwardemail/mailauth": "^4.6.6",
+    "axios": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "tldts": "^7.4.10"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
