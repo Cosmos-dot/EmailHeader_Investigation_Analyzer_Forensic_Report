@@ -1,0 +1,1072 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #04152f;
+  color: #ffffff;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.forensic-dashboard {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      #03132d 0%,
+      #062b5c 45%,
+      #064d91 100%
+    );
+
+  color: #ffffff;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.forensic-header {
+  min-height: 92px;
+
+  padding: 20px 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #03132d;
+
+  border-bottom: 1px solid #1d5fa5;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+}
+
+.brand-symbol {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #0878df;
+
+  border-radius: 12px;
+
+  font-size: 25px;
+}
+
+.brand-section h1 {
+  margin: 0;
+
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.brand-section p {
+  margin: 5px 0 0;
+
+  color: #9ec8f1;
+
+  font-size: 14px;
+}
+
+.final-label {
+  padding: 10px 18px;
+
+  background: #0a376b;
+
+  border: 1px solid #3188d9;
+
+  border-radius: 20px;
+
+  color: #b8dcff;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 0.5px;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.dashboard-container {
+  width: 92%;
+
+  max-width: 1250px;
+
+  margin: 30px auto;
+}
+
+
+/* =====================================================
+   MAIN PANELS
+===================================================== */
+
+.investigation-panel,
+.forensic-results {
+  background: rgba(4, 29, 63, 0.88);
+
+  border: 1px solid #1d5fa5;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   INVESTIGATION
+===================================================== */
+
+.investigation-panel {
+  padding: 28px;
+}
+
+.section-heading {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+.section-heading h2 {
+  margin: 0;
+
+  font-size: 22px;
+}
+
+.section-heading p {
+  margin: 7px 0 0;
+
+  color: #9fc8f1;
+
+  font-size: 14px;
+}
+
+.clear-button {
+  padding: 9px 15px;
+
+  background: #092f5d;
+
+  color: #b9ddff;
+
+  border: 1px solid #2c7fc5;
+
+  border-radius: 7px;
+
+  cursor: pointer;
+}
+
+.clear-button:hover {
+  background: #0d437d;
+}
+
+
+/* =====================================================
+   INPUT GRID
+===================================================== */
+
+.analysis-input-grid {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr;
+
+  gap: 20px;
+}
+
+.input-section,
+.eml-section {
+  padding: 22px;
+
+  background: #062957;
+
+  border: 1px solid #1c61a5;
+
+  border-radius: 12px;
+}
+
+.input-section h3,
+.eml-section h3 {
+  margin: 0;
+
+  font-size: 17px;
+}
+
+.input-description {
+  color: #8db8e5;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+textarea {
+  width: 100%;
+
+  min-height: 240px;
+
+  margin-top: 12px;
+
+  padding: 15px;
+
+  resize: vertical;
+
+  background: #02152f;
+
+  color: #e8f4ff;
+
+  border: 1px solid #286da9;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  font-family: Consolas, monospace;
+
+  font-size: 13px;
+}
+
+textarea:focus {
+  border-color: #3ca4ff;
+
+  box-shadow:
+    0 0 0 2px rgba(60, 164, 255, 0.15);
+}
+
+textarea::placeholder {
+  color: #6386ac;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.analyze-button {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 13px;
+
+  background: #0878df;
+
+  color: #ffffff;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.analyze-button:hover {
+  background: #0b8df7;
+}
+
+.analyze-button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   EML UPLOAD
+===================================================== */
+
+.eml-section {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.upload-symbol {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #0b3d76;
+
+  border: 1px solid #3188d9;
+
+  border-radius: 50%;
+
+  font-size: 26px;
+}
+
+.eml-section p {
+  color: #8db8e5;
+
+  font-size: 13px;
+}
+
+.file-label {
+  margin-top: 12px;
+
+  color: #75b9f3;
+
+  font-size: 13px;
+}
+
+.eml-section input[type="file"] {
+  width: 100%;
+
+  margin: 15px 0;
+
+  padding: 9px;
+
+  background: #041b39;
+
+  color: #b9dcff;
+
+  border: 1px dashed #3188d9;
+
+  border-radius: 7px;
+}
+
+.selected-file {
+  width: 100%;
+
+  padding: 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  background: #0a396c;
+
+  border: 1px solid #216bad;
+
+  border-radius: 7px;
+
+  color: #c7e5ff;
+
+  font-size: 12px;
+
+  word-break: break-word;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-message {
+  margin-top: 18px;
+
+  padding: 13px;
+
+  display: flex;
+
+  gap: 8px;
+
+  background: #3b1721;
+
+  border: 1px solid #9c3c4e;
+
+  border-radius: 8px;
+
+  color: #ffb8c3;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   RESULTS
+===================================================== */
+
+.forensic-results {
+  margin-top: 30px;
+
+  padding: 28px;
+}
+
+.results-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 22px;
+}
+
+.results-header h2 {
+  margin: 0;
+
+  font-size: 22px;
+}
+
+.results-header p {
+  margin: 7px 0 0;
+
+  color: #9fc8f1;
+
+  font-size: 13px;
+}
+
+.analysis-complete {
+  padding: 8px 13px;
+
+  background: #073d33;
+
+  border: 1px solid #23875d;
+
+  border-radius: 20px;
+
+  color: #6ee7b7;
+
+  font-size: 11px;
+
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   RISK DASHBOARD
+===================================================== */
+
+.risk-dashboard {
+  display: grid;
+
+  grid-template-columns: 1fr 2fr;
+
+  background: #061f42;
+
+  border: 1px solid #1d69ae;
+
+  border-radius: 13px;
+
+  margin-bottom: 25px;
+}
+
+.risk-main {
+  padding: 25px;
+
+  text-align: center;
+
+  border-right: 1px solid #1d5fa5;
+}
+
+.risk-main span,
+.risk-classification span {
+  color: #82b5e7;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 1px;
+}
+
+.risk-value {
+  margin-top: 8px;
+
+  font-size: 65px;
+
+  font-weight: 800;
+}
+
+.risk-low {
+  color: #45d18c;
+}
+
+.risk-medium {
+  color: #ffc857;
+}
+
+.risk-high {
+  color: #ff6377;
+}
+
+.risk-main small {
+  color: #789fc9;
+
+  font-size: 11px;
+}
+
+.risk-classification {
+  padding: 25px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.risk-classification strong {
+  margin-top: 10px;
+
+  font-size: 26px;
+}
+
+.risk-classification p {
+  color: #82a9d2;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.dashboard-section {
+  margin-top: 25px;
+}
+
+.section-title {
+  margin-bottom: 12px;
+
+  color: #c7e4ff;
+
+  font-size: 16px;
+
+  font-weight: bold;
+}
+
+
+/* =====================================================
+   AUTHENTICATION
+===================================================== */
+
+.authentication-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+}
+
+.authentication-card {
+  padding: 20px;
+
+  background: #062b57;
+
+  border: 1px solid #216bad;
+
+  border-radius: 11px;
+}
+
+.auth-name {
+  color: #b7d8f7;
+
+  font-size: 16px;
+
+  font-weight: bold;
+}
+
+.auth-status {
+  display: inline-block;
+
+  margin-top: 12px;
+
+  padding: 7px 12px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  font-weight: bold;
+}
+
+.authentication-card p {
+  margin-bottom: 0;
+
+  color: #789fc9;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   AUTH STATUS COLORS
+===================================================== */
+
+.status-pass {
+  background: #083f34;
+
+  color: #5ee7ae;
+}
+
+.status-fail {
+  background: #461a27;
+
+  color: #ff8090;
+}
+
+.status-warning {
+  background: #4a3613;
+
+  color: #ffd66b;
+}
+
+.status-neutral {
+  background: #173d62;
+
+  color: #a9d4ff;
+}
+
+.status-unknown {
+  background: #17304f;
+
+  color: #9ebbd9;
+}
+
+
+/* =====================================================
+   INFORMATION
+===================================================== */
+
+.information-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 12px;
+}
+
+.information-item {
+  min-height: 75px;
+
+  padding: 15px;
+
+  background: #062b57;
+
+  border: 1px solid #216bad;
+
+  border-radius: 10px;
+}
+
+.information-item span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #7099c3;
+
+  font-size: 11px;
+}
+
+.information-item strong {
+  color: #d5eaff;
+
+  font-size: 13px;
+
+  word-break: break-word;
+}
+
+
+/* =====================================================
+   FINDINGS
+===================================================== */
+
+.findings-dashboard {
+  padding: 15px;
+
+  background: #061f42;
+
+  border: 1px solid #1d5fa5;
+
+  border-radius: 10px;
+}
+
+.finding-row {
+  padding: 12px;
+
+  display: flex;
+
+  gap: 12px;
+
+  margin-bottom: 8px;
+
+  background: #382522;
+
+  border-left: 3px solid #f2a93b;
+
+  border-radius: 5px;
+
+  color: #ffd39a;
+}
+
+.finding-icon {
+  color: #ffc857;
+
+  font-size: 18px;
+}
+
+.finding-content {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.finding-content strong {
+  color: #ffcc8c;
+
+  font-size: 13px;
+}
+
+.finding-content p {
+  width: 100%;
+
+  margin: 2px 0 0;
+
+  color: #e8bd91;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   SEVERITY
+===================================================== */
+
+.severity-high {
+  padding: 3px 8px;
+
+  background: #7d202e;
+
+  color: #ffd5db;
+
+  border-radius: 10px;
+
+  font-size: 9px;
+
+  font-weight: bold;
+}
+
+.severity-medium {
+  padding: 3px 8px;
+
+  background: #6a4a0b;
+
+  color: #ffe9a8;
+
+  border-radius: 10px;
+
+  font-size: 9px;
+
+  font-weight: bold;
+}
+
+.severity-low {
+  padding: 3px 8px;
+
+  background: #174d42;
+
+  color: #a4f0d4;
+
+  border-radius: 10px;
+
+  font-size: 9px;
+
+  font-weight: bold;
+}
+
+.severity-unknown {
+  padding: 3px 8px;
+
+  background: #173a5f;
+
+  color: #b6d9f7;
+
+  border-radius: 10px;
+
+  font-size: 9px;
+
+  font-weight: bold;
+}
+
+.no-findings {
+  padding: 12px;
+
+  background: #073a34;
+
+  border: 1px solid #23775e;
+
+  border-radius: 7px;
+
+  color: #6ee7b7;
+
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   FORENSIC REPORT
+===================================================== */
+
+.forensic-report {
+  padding: 22px;
+
+  background: #061f42;
+
+  border: 1px solid #1e6ab1;
+
+  border-radius: 11px;
+
+  color: #c7e3ff;
+
+  line-height: 1.7;
+}
+
+.report-heading {
+  margin-bottom: 12px;
+
+  color: #ffffff;
+
+  font-size: 17px;
+
+  font-weight: bold;
+}
+
+.forensic-report p {
+  color: #a9c9e9;
+
+  font-size: 13px;
+}
+
+.forensic-report strong {
+  color: #e0f0ff;
+}
+
+
+/* =====================================================
+   REPORT GRID
+===================================================== */
+
+.report-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 10px;
+
+  margin-top: 18px;
+}
+
+.report-grid div {
+  padding: 12px;
+
+  background: #082c58;
+
+  border: 1px solid #1d5fa5;
+
+  border-radius: 7px;
+}
+
+.report-grid span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #7099c3;
+
+  font-size: 10px;
+
+  text-transform: uppercase;
+}
+
+.report-grid strong {
+  display: block;
+
+  font-size: 12px;
+
+  word-break: break-word;
+}
+
+
+/* =====================================================
+   FORENSIC CONCLUSION
+===================================================== */
+
+.forensic-conclusion {
+  margin-top: 18px;
+
+  padding: 15px;
+
+  background: #082c58;
+
+  border-left: 3px solid #2588df;
+
+  border-radius: 6px;
+}
+
+.forensic-conclusion strong {
+  color: #d6ecff;
+
+  font-size: 13px;
+}
+
+.forensic-conclusion p {
+  margin-bottom: 0;
+
+  color: #a9c9e9;
+
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   REPORT NOTE
+===================================================== */
+
+.report-note {
+  margin-top: 18px;
+
+  padding: 12px;
+
+  background: #082c58;
+
+  border-left: 3px solid #2588df;
+
+  color: #9fc8f1;
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.dashboard-footer {
+  padding: 25px;
+
+  text-align: center;
+
+  color: #7199c3;
+
+  font-size: 11px;
+}
+
+.dashboard-footer span {
+  margin: 0 8px;
+
+  color: #3188d9;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .analysis-input-grid,
+  .risk-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .risk-main {
+    border-right: none;
+
+    border-bottom: 1px solid #1d5fa5;
+  }
+
+  .authentication-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .information-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .report-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .forensic-header {
+    padding: 18px;
+  }
+
+  .brand-section h1 {
+    font-size: 18px;
+  }
+
+  .final-label {
+    display: none;
+  }
+
+  .dashboard-container {
+    width: 95%;
+  }
+
+  .investigation-panel,
+  .forensic-results {
+    padding: 18px;
+  }
+
+  .section-heading,
+  .results-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .information-grid,
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+}
