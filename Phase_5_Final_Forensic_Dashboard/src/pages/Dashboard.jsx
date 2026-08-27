@@ -29,7 +29,10 @@ function Dashboard() {
         formData
       );
 
-      console.log("VERIFICATION RESULT:", response.data);
+      console.log(
+        "VERIFICATION RESULT:",
+        response.data
+      );
 
       if (!response.data?.success) {
         throw new Error(
@@ -40,7 +43,10 @@ function Dashboard() {
 
       setResult(response.data);
     } catch (err) {
-      console.error("EML VERIFICATION ERROR:", err);
+      console.error(
+        "EML VERIFICATION ERROR:",
+        err
+      );
 
       setError(
         err.response?.data?.message ||
@@ -58,7 +64,8 @@ function Dashboard() {
     setResult(null);
     setError("");
 
-    const input = document.getElementById("emlFile");
+    const input =
+      document.getElementById("emlFile");
 
     if (input) {
       input.value = "";
@@ -78,7 +85,8 @@ function Dashboard() {
   };
 
   const getStatusClass = (value) => {
-    const status = String(value || "").toLowerCase();
+    const status =
+      String(value || "").toLowerCase();
 
     if (status === "pass") {
       return "status-pass";
@@ -120,13 +128,30 @@ function Dashboard() {
 
   const dkim =
     summary.dkim ||
-    authentication.dkim?.results?.[0]?.status?.result ||
+    authentication.dkim?.results?.[0]
+      ?.status?.result ||
     "unknown";
 
   const dmarc =
     summary.dmarc ||
     authentication.dmarc?.status?.result ||
     "unknown";
+
+  // DMARC result reported by the main
+  // authentication verification engine
+  const reportedDmarc =
+    alignment.mailauthDMARCResult ||
+    dmarc;
+
+  // DMARC result independently calculated
+  // using explicit SPF/DKIM alignment
+  const independentDmarc =
+    alignment.dmarc?.calculatedResult ||
+    "unknown";
+
+  // Whether both DMARC calculations agree
+  const resultsAgree =
+    alignment.resultsAgree;
 
   const spfAlignment =
     alignment.spf?.dmarcAligned;
@@ -148,6 +173,7 @@ function Dashboard() {
 
       <header className="forensic-header">
         <div className="brand-section">
+
           <div className="brand-symbol">
             ✉
           </div>
@@ -158,9 +184,11 @@ function Dashboard() {
             </h1>
 
             <p>
-              Digital Forensic Email Analysis Platform
+              Digital Forensic Email Analysis
+              Platform
             </p>
           </div>
+
         </div>
 
         <div className="final-label">
@@ -226,7 +254,8 @@ function Dashboard() {
               accept=".eml,message/rfc822"
               onChange={(event) => {
                 setFile(
-                  event.target.files?.[0] || null
+                  event.target.files?.[0] ||
+                    null
                 );
 
                 setError("");
@@ -255,6 +284,7 @@ function Dashboard() {
 
           {error && (
             <div className="error-message">
+
               <strong>
                 Analysis Error:
               </strong>
@@ -262,6 +292,7 @@ function Dashboard() {
               <span>
                 {error}
               </span>
+
             </div>
           )}
 
@@ -301,7 +332,10 @@ function Dashboard() {
 
               <div className="authentication-grid">
 
+                {/* SPF */}
+
                 <div className="authentication-card">
+
                   <div className="auth-name">
                     SPF
                   </div>
@@ -325,7 +359,9 @@ function Dashboard() {
 
                   <p>
                     Envelope:{" "}
-                    {display(smtp.envelopeSender)}
+                    {display(
+                      smtp.envelopeSender
+                    )}
                   </p>
 
                   {authentication.spf?.status
@@ -338,9 +374,13 @@ function Dashboard() {
                       }
                     </p>
                   )}
+
                 </div>
 
+                {/* DKIM */}
+
                 <div className="authentication-card">
+
                   <div className="auth-name">
                     DKIM
                   </div>
@@ -357,58 +397,63 @@ function Dashboard() {
                     DomainKeys Identified Mail
                   </p>
 
-                  {authentication.dkim
-                    ?.results?.map(
-                      (signature, index) => (
-                        <div
-                          className="dkim-details"
-                          key={index}
-                        >
-                          <p>
-                            Signing Domain:{" "}
-                            {display(
-                              signature.signingDomain
-                            )}
-                          </p>
+                  {authentication.dkim?.results?.map(
+                    (signature, index) => (
+                      <div
+                        className="dkim-details"
+                        key={index}
+                      >
 
-                          <p>
-                            Selector:{" "}
-                            {display(
-                              signature.selector
-                            )}
-                          </p>
+                        <p>
+                          Signing Domain:{" "}
+                          {display(
+                            signature.signingDomain
+                          )}
+                        </p>
 
-                          <p>
-                            Result:{" "}
-                            {display(
-                              signature.status
-                                ?.result
-                            )}
-                          </p>
+                        <p>
+                          Selector:{" "}
+                          {display(
+                            signature.selector
+                          )}
+                        </p>
 
-                          <p>
-                            Reason:{" "}
-                            {display(
-                              signature.status
-                                ?.comment
-                            )}
-                          </p>
-                        </div>
-                      )
-                    )}
+                        <p>
+                          Result:{" "}
+                          {display(
+                            signature.status?.result
+                          )}
+                        </p>
+
+                        <p>
+                          Reason:{" "}
+                          {display(
+                            signature.status?.comment
+                          )}
+                        </p>
+
+                      </div>
+                    )
+                  )}
+
                 </div>
 
+                {/* DMARC */}
+
                 <div className="authentication-card">
+
                   <div className="auth-name">
                     DMARC
                   </div>
 
                   <div
                     className={`auth-status ${getStatusClass(
-                      dmarc
+                      reportedDmarc
                     )}`}
                   >
-                    {display(dmarc).toUpperCase()}
+                    {display(
+                      reportedDmarc
+                    ).toUpperCase()}
                   </div>
 
                   <p>
@@ -429,9 +474,31 @@ function Dashboard() {
                       authentication.dmarc?.policy
                     )}
                   </p>
+
+                  <p>
+                    Independent Result:{" "}
+                    <strong>
+                      {display(
+                        independentDmarc
+                      ).toUpperCase()}
+                    </strong>
+                  </p>
+
+                  <p>
+                    Results Agree:{" "}
+                    <strong>
+                      {resultsAgree === true
+                        ? "YES"
+                        : resultsAgree === false
+                        ? "NO"
+                        : "NOT AVAILABLE"}
+                    </strong>
+                  </p>
+
                 </div>
 
               </div>
+
             </div>
 
             {/* SENDER */}
@@ -445,6 +512,7 @@ function Dashboard() {
               <div className="information-grid">
 
                 <div className="information-item">
+
                   <span>
                     Envelope Sender
                   </span>
@@ -454,9 +522,11 @@ function Dashboard() {
                       smtp.envelopeSender
                     )}
                   </strong>
+
                 </div>
 
                 <div className="information-item">
+
                   <span>
                     Header From
                   </span>
@@ -466,9 +536,11 @@ function Dashboard() {
                       smtp.headerFrom
                     )}
                   </strong>
+
                 </div>
 
                 <div className="information-item">
+
                   <span>
                     Domain
                   </span>
@@ -478,9 +550,11 @@ function Dashboard() {
                       smtp.headerFromDomain
                     )}
                   </strong>
+
                 </div>
 
                 <div className="information-item">
+
                   <span>
                     IPv4 Address
                   </span>
@@ -490,9 +564,11 @@ function Dashboard() {
                       smtp.clientIp
                     )}
                   </strong>
+
                 </div>
 
                 <div className="information-item">
+
                   <span>
                     HELO
                   </span>
@@ -502,9 +578,11 @@ function Dashboard() {
                       smtp.helo
                     )}
                   </strong>
+
                 </div>
 
                 <div className="information-item">
+
                   <span>
                     Routing Hops
                   </span>
@@ -514,9 +592,11 @@ function Dashboard() {
                       smtp.routingHops
                     )}
                   </strong>
+
                 </div>
 
               </div>
+
             </div>
 
             {/* DMARC ALIGNMENT */}
@@ -530,6 +610,7 @@ function Dashboard() {
               <div className="alignment-grid">
 
                 <div className="alignment-item">
+
                   <span>
                     SPF Alignment
                   </span>
@@ -541,9 +622,11 @@ function Dashboard() {
                       ? "FAIL"
                       : "NOT AVAILABLE"}
                   </strong>
+
                 </div>
 
                 <div className="alignment-item">
+
                   <span>
                     DKIM Alignment
                   </span>
@@ -555,9 +638,11 @@ function Dashboard() {
                       ? "FAIL"
                       : "NOT AVAILABLE"}
                   </strong>
+
                 </div>
 
                 <div className="alignment-item">
+
                   <span>
                     DMARC Passed By
                   </span>
@@ -567,6 +652,37 @@ function Dashboard() {
                       dmarcPassedBy
                     ).toUpperCase()}
                   </strong>
+
+                </div>
+
+                <div className="alignment-item">
+
+                  <span>
+                    Independent DMARC Result
+                  </span>
+
+                  <strong>
+                    {display(
+                      independentDmarc
+                    ).toUpperCase()}
+                  </strong>
+
+                </div>
+
+                <div className="alignment-item">
+
+                  <span>
+                    Verification Results Agree
+                  </span>
+
+                  <strong>
+                    {resultsAgree === true
+                      ? "YES"
+                      : resultsAgree === false
+                      ? "NO"
+                      : "NOT AVAILABLE"}
+                  </strong>
+
                 </div>
 
               </div>
@@ -574,7 +690,7 @@ function Dashboard() {
               <div className="dmarc-explanation">
 
                 <strong>
-                  DMARC Decision
+                  Independent DMARC Decision
                 </strong>
 
                 <p>
@@ -596,36 +712,49 @@ function Dashboard() {
               <div className="information-grid">
 
                 <div className="information-item">
+
                   <span>SPF</span>
+
                   <strong>
                     Independent DNS Verification
                   </strong>
+
                 </div>
 
                 <div className="information-item">
+
                   <span>DKIM</span>
+
                   <strong>
                     Cryptographic Signature
                     Verification
                   </strong>
+
                 </div>
 
                 <div className="information-item">
+
                   <span>DMARC</span>
+
                   <strong>
                     DNS Policy + Explicit
                     Alignment
                   </strong>
+
                 </div>
 
                 <div className="information-item">
+
                   <span>ARC</span>
+
                   <strong>
                     Reported Separately
                   </strong>
+
                 </div>
 
               </div>
+
             </div>
 
             {/* FINAL CONCLUSION */}
@@ -660,9 +789,31 @@ function Dashboard() {
                 </p>
 
                 <p>
-                  DMARC Result:{" "}
+                  Reported DMARC Result:{" "}
                   <strong>
-                    {display(dmarc).toUpperCase()}
+                    {display(
+                      reportedDmarc
+                    ).toUpperCase()}
+                  </strong>
+                </p>
+
+                <p>
+                  Independent DMARC Result:{" "}
+                  <strong>
+                    {display(
+                      independentDmarc
+                    ).toUpperCase()}
+                  </strong>
+                </p>
+
+                <p>
+                  DMARC Verification Results Agree:{" "}
+                  <strong>
+                    {resultsAgree === true
+                      ? "YES"
+                      : resultsAgree === false
+                      ? "NO"
+                      : "NOT AVAILABLE"}
                   </strong>
                 </p>
 
